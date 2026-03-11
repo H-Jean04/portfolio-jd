@@ -315,3 +315,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') motivOverlay?.classList.remove('open');
   });
 });
+
+
+// ---- PROJECTS CAROUSEL ----
+function initProjectCarousel(carouselId, prevId, nextId, dotsId) {
+  const carousel = document.getElementById(carouselId);
+  const prevBtn = document.getElementById(prevId);
+  const nextBtn = document.getElementById(nextId);
+  const dotsContainer = document.getElementById(dotsId);
+  if (!carousel) return;
+
+  const cards = carousel.querySelectorAll('.project-card');
+  let current = 0;
+  const visible = () => window.innerWidth <= 600 ? 1 : 2;
+  const total = () => Math.ceil(cards.length / visible());
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < total(); i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === current ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, total() - 1));
+    const cardWidth = cards[0].offsetWidth + 24;
+    carousel.scrollTo({ left: current * cardWidth * visible(), behavior: 'smooth' });
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    if (prevBtn) prevBtn.disabled = current === 0;
+    if (nextBtn) nextBtn.disabled = current >= total() - 1;
+  }
+
+  prevBtn?.addEventListener('click', () => goTo(current - 1));
+  nextBtn?.addEventListener('click', () => goTo(current + 1));
+
+  // Swipe tactile
+  let startX = 0;
+  carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+  carousel.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? goTo(current + 1) : goTo(current - 1);
+  });
+
+  buildDots();
+  goTo(0);
+  window.addEventListener('resize', () => { buildDots(); goTo(0); });
+}
+
+initProjectCarousel('proj-carousel-1', 'proj1-prev', 'proj1-next', 'proj-dots-1');
+initProjectCarousel('proj-carousel-2', 'proj2-prev', 'proj2-next', 'proj-dots-2');

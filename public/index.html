@@ -139,87 +139,208 @@
   </section>
 
   <!-- PROJECTS -->
-  <section class="projects" id="projects">
-    <div class="container">
-      <div class="section-label">02 — Projets</div>
-      <h2 class="section-title">Ce que j'ai construit</h2>
-      <div class="projects-grid">
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-label">02 — Projets</div>
+    <h2 class="section-title">Ce que j'ai construit</h2>
 
-        <!-- Project 1 -->
-        <div class="project-card" data-delay="0">
-          <div class="project-img">
-            <div class="project-img-bg weather-bg">
-              <div class="weather-icon">
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="30" r="14" fill="#00e5ff" opacity="0.9"/>
-                  <path d="M10 58c0-11 8-18 18-18h24c8 0 14 6 14 14H10z" fill="#1a2744" stroke="#00e5ff" stroke-width="1.5"/>
-                  <line x1="40" y1="8" x2="40" y2="2" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="40" y1="58" x2="40" y2="64" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="18" y1="30" x2="12" y2="30" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="68" y1="30" x2="62" y2="30" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
-                  <circle cx="56" cy="56" r="2" fill="#00e5ff" opacity="0.7"/>
-                  <circle cx="48" cy="64" r="2" fill="#00e5ff" opacity="0.5"/>
-                  <circle cx="32" cy="64" r="2" fill="#00e5ff" opacity="0.5"/>
-                </svg>
-              </div>
-            </div>
-            <div class="project-tag-top">Projet académique</div>
-          </div>
-          <div class="project-body">
-            <h3>Station Météo Embarquée</h3>
-            <p>Système basé sur microcontrôleur permettant la collecte et la transmission de données météorologiques via capteurs (température, humidité, pression).</p>
-            <div class="project-tech">
-              <span>STM32</span>
-              <span>C</span>
-              <span>I2C</span>
-              <span>UART</span>
-              <span>BME280</span>
-            </div>
-            <a href="project.html" class="btn-project">
-              Voir le projet
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card featured" data-delay="150">
-          <div class="project-img">
-            <div class="project-img-bg agri-bg">
-              <div class="weather-icon">
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M40 70 C40 70 15 50 15 30 C15 18 26 10 40 10 C54 10 65 18 65 30 C65 50 40 70 40 70Z" fill="#0a2e1a" stroke="#00ff88" stroke-width="1.5"/>
-                  <path d="M40 45 C40 45 28 36 28 26 C28 20 33 16 40 16 C47 16 52 20 52 26 C52 36 40 45 40 45Z" fill="#00ff88" opacity="0.25"/>
-                  <line x1="40" y1="70" x2="40" y2="45" stroke="#00ff88" stroke-width="2"/>
-                  <circle cx="40" cy="30" r="6" fill="#00ff88" opacity="0.8"/>
-                  <circle cx="22" cy="55" r="3" fill="#00ff88" opacity="0.5"/>
-                  <circle cx="58" cy="55" r="3" fill="#00ff88" opacity="0.5"/>
-                  <path d="M20 68 Q30 60 40 70 Q50 60 60 68" stroke="#00ff88" stroke-width="1.5" fill="none" opacity="0.4"/>
-                </svg>
-              </div>
-            </div>
-            <div class="project-tag-top hackathon">🥈 Hackathon — 2e place</div>
-          </div>
-          <div class="project-body">
-            <h3>Pulvérisateur Agricole Intelligent</h3>
-            <p>Système embarqué combinant capteurs et automatisation pour optimiser la pulvérisation agricole. Projet réalisé lors d'un hackathon — <strong>2e place</strong>.</p>
-            <div class="project-tech">
-              <span>Arduino</span>
-              <span>C++</span>
-              <span>Capteurs</span>
-              <span>SPI</span>
-              <span>Automatisation</span>
-            </div>
-            <a href="coming-soon.html" class="btn-project">
-              Voir le projet
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-
+    <!-- LIGNE 1 : Projets embarqués -->
+    <div class="projects-row-header" >
+      <div class="projects-row-title">
+        <span class="row-dot cyan"></span>
+        Systèmes embarqués & IoT
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="proj1-prev">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="carousel-btn" id="proj1-next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
       </div>
     </div>
-  </section>
+    <div class="projects-carousel" id="proj-carousel-1">
+
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-bg weather-bg">
+            <div class="weather-icon">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="30" r="14" fill="#00e5ff" opacity="0.9"/>
+                <path d="M10 58c0-11 8-18 18-18h24c8 0 14 6 14 14H10z" fill="#1a2744" stroke="#00e5ff" stroke-width="1.5"/>
+                <line x1="40" y1="8" x2="40" y2="2" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
+                <line x1="40" y1="58" x2="40" y2="64" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18" y1="30" x2="12" y2="30" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
+                <line x1="68" y1="30" x2="62" y2="30" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-tag-top">Projet académique</div>
+        </div>
+        <div class="project-body">
+          <h3>Station Météo Embarquée</h3>
+          <p>Système basé sur microcontrôleur permettant la collecte et la transmission de données météorologiques via capteurs.</p>
+          <div class="project-tech">
+            <span>ATmega328P</span><span>C</span><span>UART</span><span>I2C</span><span>SPI</span><span>UART</span><span>BME280</span>
+          </div>
+          <a href="project.html" class="btn-project">
+            Voir le projet
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card featured">
+        <div class="project-img">
+          <div class="project-img-bg agri-bg">
+            <div class="weather-icon">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <path d="M40 70 C40 70 15 50 15 30 C15 18 26 10 40 10 C54 10 65 18 65 30 C65 50 40 70 40 70Z" fill="#0a2e1a" stroke="#00ff88" stroke-width="1.5"/>
+                <circle cx="40" cy="30" r="6" fill="#00ff88" opacity="0.8"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-tag-top hackathon">🥈 Hackathon — 2e place</div>
+        </div>
+        <div class="project-body">
+          <h3>Pulvérisateur Agricole Intelligent</h3>
+          <p>Système embarqué combinant capteurs et automatisation pour optimiser la pulvérisation agricole.</p>
+          <div class="project-tech">
+            <span>Arduino</span><span>C</span><span>Capteurs</span><span>SPI</span>
+          </div>
+          <a href="coming-soon.html" class="btn-project">
+            Voir le projet
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Ajoute tes prochains projets embarqués ici -->
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-bg" style="background: linear-gradient(135deg,#060d20,#0a1535);">
+            <div class="weather-icon">
+              <svg width="70" height="70" viewBox="0 0 80 80" fill="none">
+                <rect x="15" y="20" width="50" height="35" rx="4" stroke="#00e5ff" stroke-width="1.5" fill="#0a1628"/>
+                <line x1="25" y1="55" x2="25" y2="65" stroke="#00e5ff" stroke-width="2"/>
+                <line x1="55" y1="55" x2="55" y2="65" stroke="#00e5ff" stroke-width="2"/>
+                <line x1="20" y1="65" x2="60" y2="65" stroke="#00e5ff" stroke-width="2"/>
+                <rect x="30" y="28" width="20" height="18" rx="2" fill="#00e5ff" opacity="0.15" stroke="#00e5ff" stroke-width="1"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-tag-top">À venir</div>
+        </div>
+        <div class="project-body">
+          <h3>Prochain projet embarqué</h3>
+          <p>Un nouveau projet en cours de développement. Revenez bientôt pour découvrir les détails.</p>
+          <div class="project-tech"><span>STM32</span><span>IoT</span></div>
+          <a href="coming-soon.html" class="btn-project">
+            Bientôt disponible
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="carousel-dots" id="proj-dots-1"></div>
+
+    <!-- LIGNE 2 : Autres projets -->
+    <div hidden> <!--Caché d'abord-->
+      
+    <div class="projects-row-header" style="margin-top: 56px;">
+      <div class="projects-row-title">
+        <span class="row-dot green"></span>
+        Autres contributions
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="proj2-prev">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="carousel-btn" id="proj2-next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="projects-carousel" id="proj-carousel-2">
+
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-bg" style="background: linear-gradient(135deg,#0d1a0a,#0f2410);">
+            <div class="weather-icon">
+              <svg width="70" height="70" viewBox="0 0 80 80" fill="none">
+                <rect x="18" y="18" width="44" height="44" rx="6" stroke="#4ade80" stroke-width="1.5" fill="#0a1f0c"/>
+                <path d="M28 40 L35 47 L52 33" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-tag-top" style="color:#4ade80; border-color:rgba(74,222,128,0.25);">Logiciel</div>
+        </div>
+        <div class="project-body">
+          <h3>Nom du projet logiciel</h3>
+          <p>Décris ici ta contribution à ce projet. Remplace par le vrai contenu.</p>
+          <div class="project-tech"><span>Python</span><span>Script</span></div>
+          <a href="coming-soon.html" class="btn-project">
+            Voir le projet
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-bg" style="background: linear-gradient(135deg,#0d0820,#160a30);">
+            <div class="weather-icon">
+              <svg width="70" height="70" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="22" stroke="#a78bfa" stroke-width="1.5" fill="#1a0d35" opacity="0.9"/>
+                <path d="M40 25 L45 37 L58 37 L48 45 L52 58 L40 50 L28 58 L32 45 L22 37 L35 37 Z" fill="#a78bfa" opacity="0.7"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-tag-top" style="color:#a78bfa; border-color:rgba(167,139,250,0.25);">Développement web</div>
+        </div>
+        <div class="project-body">
+          <h3>Nom du projet web</h3>
+          <p>Décris ici ta contribution à ce projet. Remplace par le vrai contenu.</p>
+          <div class="project-tech"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <a href="coming-soon.html" class="btn-project">
+            Voir le projet
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img">
+          <div class="project-img-bg" style="background: linear-gradient(135deg,#1a100a,#2a1505);">
+            <div class="weather-icon">
+              <svg width="70" height="70" viewBox="0 0 80 80" fill="none">
+                <path d="M40 15 L65 55 H15 Z" stroke="#fb923c" stroke-width="1.5" fill="#2a1505" opacity="0.9"/>
+                <circle cx="40" cy="48" r="4" fill="#fb923c" opacity="0.8"/>
+                <line x1="40" y1="30" x2="40" y2="43" stroke="#fb923c" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="project-tag-top" style="color:#fb923c; border-color:rgba(251,146,60,0.25);">Autre</div>
+        </div>
+        <div class="project-body">
+          <h3>Nom du projet</h3>
+          <p>Décris ici ta contribution à ce projet. Remplace par le vrai contenu.</p>
+          <div class="project-tech"><span>À définir</span></div>
+          <a href="coming-soon.html" class="btn-project">
+            Voir le projet
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="carousel-dots" id="proj-dots-2"></div>
+
+    </div> <!--Pour la partie caché-->
+
+  </div>
+</section>
 
   <!-- SKILLS -->
   <section class="skills-section" id="skills">

@@ -156,36 +156,74 @@
           <h2>Extrait de code</h2>
           <p>Boucle principale de collecte et transmission des données :</p>
           <div class="article-code">
-            <div class="code-header">
-              <span class="code-lang">C — Boucle principale</span>
-              <button class="code-copy" onclick="copyCode(this)">Copier</button>
-            </div>
-            <pre><code><span class="c-keyword">void</span> <span class="c-fn">app_main_loop</span>(<span class="c-keyword">void</span>) {
-    WeatherData data;
-
-    <span class="c-keyword">while</span> (<span class="c-num">1</span>) {
-        <span class="c-comment">// Lecture capteur BME280 via I2C</span>
-        BME280_ReadAll(&data.temperature,
-                       &data.humidity,
-                       &data.pressure);
-
-        <span class="c-comment">// Affichage OLED</span>
-        OLED_DisplayWeather(&data);
-
-        <span class="c-comment">// Transmission WiFi (JSON)</span>
-        <span class="c-keyword">char</span> payload[<span class="c-num">128</span>];
-        snprintf(payload, <span class="c-keyword">sizeof</span>(payload),
-            <span class="c-str">"{\"temp\":%.1f,\"hum\":%.1f,\"pres\":%.1f}"</span>,
-            data.temperature, data.humidity, data.pressure);
-
-        ESP8266_SendHTTP(SERVER_URL, payload);
-
-        <span class="c-comment">// Veille 60 secondes</span>
-        HAL_PWR_EnterSLEEPMode(PWR_MAINREGULATOR_ON,
-                               PWR_SLEEPENTRY_WFI);
-    }
-}</code></pre>
+          <div class="code-header">
+            <span class="code-lang">Arduino C++ — Main (setup & loop)</span>
+            <button class="code-copy" onclick="copyCode(this)">Copier</button>
           </div>
+          <pre><code><span class="c-comment">// ---- SETUP ----</span>
+        <span class="c-keyword">void</span> <span class="c-fn">setup</span>() {
+          Serial.begin(SERIAL_BAUD);
+          delay(<span class="c-num">100</span>);
+          Serial.begin(<span class="c-num">9600</span>);
+          Wire.begin();
+          rtc.begin();
+          SoftSerial.begin(<span class="c-num">9600</span>);
+
+          <span class="c-comment">// Boutons et LED par défaut</span>
+          pinMode(RED_BUTTON, INPUT_PULLUP);
+          pinMode(GREEN_BUTTON, INPUT_PULLUP);
+          leds.setColorRGB(<span class="c-num">0</span>, <span class="c-num">0</span>, <span class="c-num">255</span>, <span class="c-num">0</span>); <span class="c-comment">// LED Verte — Mode Standard</span>
+          rtc.adjust(DateTime(F(<span class="c-str">__DATE__</span>), F(<span class="c-str">__TIME__</span>)));
+
+          <span class="c-comment">// Capteur BME280</span>
+          bme.begin();
+          <span class="c-keyword">bool</span> status = bme.begin();
+          <span class="c-keyword">if</span> (!status) {
+            Serial.println(F(<span class="c-str">"Erreur : capteur BME280 introuvable !"</span>));
+            indicateError(<span class="c-num">3</span>);
+          }
+
+          loadConfigFromEEPROM();
+
+          <span class="c-comment">// Initialisation carte SD</span>
+          <span class="c-keyword">if</span> (!SD.begin(SD_CS)) {
+            Serial.println(F(<span class="c-str">"SD init failed!"</span>));
+            <span class="c-keyword">while</span> (<span class="c-keyword">true</span>) {
+              leds.setColorRGB(<span class="c-num">0</span>, <span class="c-num">255</span>, <span class="c-num">0</span>, <span class="c-num">0</span>);   <span class="c-comment">// Rouge</span>
+              delay(<span class="c-num">500</span>);
+              leds.setColorRGB(<span class="c-num">0</span>, <span class="c-num">255</span>, <span class="c-num">255</span>, <span class="c-num">255</span>); <span class="c-comment">// Blanc</span>
+              delay(<span class="c-num">1000</span>);
+            }
+          } <span class="c-keyword">else</span> {
+            Serial.println(F(<span class="c-str">"Carte SD prête."</span>));
+          }
+
+          <span class="c-comment">// Vérification bouton rouge au démarrage</span>
+          <span class="c-keyword">if</span> (digitalRead(RED_BUTTON) == LOW) {
+            modeActuel = <span class="c-num">2</span>;
+            setLEDForMode(<span class="c-num">2</span>);
+            lastConfigActivity = millis();
+          }
+
+          applyFilenameForNow(<span class="c-num">0</span>);
+
+          <span class="c-comment">// Interruptions matérielles</span>
+          attachInterrupt(digitalPinToInterrupt(RED_BUTTON),   onRedButtonChange,  CHANGE);
+          attachInterrupt(digitalPinToInterrupt(GREEN_BUTTON), onGreenButtonChange, CHANGE);
+        }
+
+        <span class="c-comment">// ---- LOOP ----</span>
+        <span class="c-keyword">void</span> <span class="c-fn">loop</span>() {
+          check_buttons_press(&amp;modeActuel, &amp;modePrecedent);
+
+          <span class="c-keyword">switch</span> (modeActuel) {
+            <span class="c-keyword">case</span> <span class="c-num">1</span>: modeStandard();      <span class="c-keyword">break</span>;
+            <span class="c-keyword">case</span> <span class="c-num">2</span>: modeConfiguration(); <span class="c-keyword">break</span>;
+            <span class="c-keyword">case</span> <span class="c-num">3</span>: modeMaintenance();   <span class="c-keyword">break</span>;
+            <span class="c-keyword">case</span> <span class="c-num">4</span>: modeEconomique();    <span class="c-keyword">break</span>;
+          }
+        }</code></pre>
+        </div>
         </section>
 
         <!-- Vidéo démo -->

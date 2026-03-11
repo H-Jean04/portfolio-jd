@@ -594,6 +594,70 @@ section { padding: 100px 0; }
 }
 .btn-project:hover { gap: 10px; }
 
+/* ---- PROJECTS CAROUSEL ---- */
+.projects-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.projects-row-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.row-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.row-dot.cyan { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+.row-dot.green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+.projects-carousel {
+  display: flex;
+  gap: 24px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Force la carte à respecter sa largeur dans le flex */
+.projects-carousel .project-card {
+  min-width: calc(50% - 12px);
+  max-width: calc(50% - 12px);
+  width: calc(50% - 12px);
+  flex-shrink: 0;
+  animation: none; /* supprime le fadeUp qui casse le layout flex */
+}
+
+@media (max-width: 768px) {
+  .projects-carousel .project-card {
+    min-width: calc(85% - 12px);
+    max-width: calc(85% - 12px);
+    width: calc(85% - 12px);
+  }
+  .projects-row-header {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-carousel .project-card {
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+  .projects-row-title {
+    font-size: 0.68rem;
+  }
+}
+
 /* =============================================
    SKILLS
    ============================================= */
